@@ -1,7 +1,14 @@
 // --- IMPORTS & CONFIGURATION ---
 const express = require('express');
+const cors = require('cors');
+const path = require('path');
 const app = express();
 const PORT = 5000;
+
+app.use(cors());
+
+// Serve static files from the public directory
+app.use('/static', express.static(path.join(__dirname, 'public')));
 
 // --- MOCK DATA ---
 const vinyls = [
@@ -11,7 +18,7 @@ const vinyls = [
     artist: "Luis Miguel",
     genre: "Pop",
     style: "Ballad",
-    imageUrl: "https://via.placeholder.com/150",
+    imageUrl: "http://localhost:5000/static/images/ayer.jpg",
     songUrl: "/music/ayer.mp3"
   },
   {
@@ -20,7 +27,7 @@ const vinyls = [
     artist: "Frank Sinatra",
     genre: "Jazz",
     style: "Swing",
-    imageUrl: "https://via.placeholder.com/150",
+    imageUrl: "http://localhost:5000/static/images/my-way.jpg",
     songUrl: "/music/my-way.mp3"
   },
   {
@@ -29,24 +36,20 @@ const vinyls = [
     artist: "José José",
     genre: "Ballad",
     style: "Romantic",
-    imageUrl: "https://via.placeholder.com/150",
+    imageUrl: "http://localhost:5000/static/images/gotas-de-fuego.jpg",
     songUrl: "/music/gotas-de-fuego.mp3"
   }
 ];
 
 // --- API ROUTES ---
-
-// 1. Root route
 app.get('/', (req, res) => {
   res.send('Vinyls app server is running!');
 });
 
-// 2. Get ALL vinyls
 app.get('/api/vinyls', (req, res) => {
   res.json(vinyls);
 });
 
-// 3. Get SINGLE vinyl by ID
 app.get('/api/vinyls/:id', (req, res) => {
   const targetId = parseInt(req.params.id);
   const foundVinyl = vinyls.find(v => v.id === targetId);
