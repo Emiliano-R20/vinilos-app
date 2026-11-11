@@ -14,7 +14,7 @@ app.use('/static', express.static(path.join(__dirname, 'public')));
 const vinyls = [
   {
     id: 1,
-    title: "Ayer",
+    title: "ayer",
     artist: "Luis Miguel",
     genre: "Pop",
     style: "Ballad",

@@ -24,7 +24,7 @@ function App() {
   return (
     <div className="app-container">
       <header className="header">
-        <h1>Vinyl Web</h1>
+        <h1>Sound Play</h1>
         <p>Welcome to your personal music library!</p>
       </header>
 
